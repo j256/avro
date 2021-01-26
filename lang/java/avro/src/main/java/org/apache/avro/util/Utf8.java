@@ -80,10 +80,14 @@ public class Utf8 implements Comparable<Utf8>, CharSequence {
   }
 
   /**
-   * Return UTF-8 encoded bytes. Only valid through {@link #getByteLength()}.
+   * Return UTF-8 encoded bytes.
    */
   public byte[] getBytes() {
-    return bytes;
+	if (bytes == null || bytes.length == length) {
+		return bytes;
+	} else {
+		return Arrays.copyOf(bytes, length);
+	}
   }
 
   /**
